@@ -5,49 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="../css/index.css">
   <title>Casa do Lampião</title>
+  <style>
+    .logout {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.logout-btn:hover {
+  background-color: var(--accent-dark); 
+  
+}
+.logout-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c96c00;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+  </style>
 </head>
 
 <body>
-  <header class="site-header">
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+<header class="site-header">
+    <div class="header-buttons">
+
+        <div class="restaurant-title">
+            <span>🏜️</span>
+            <h4>Casa do Lampião</h4>
+        </div>
+
+        <div class="logout">
+          <a href="../logout.php" class="logout-btn">Logout</a>
+        </div>
+
     </div>
 
-    <div class="restaurant-title">
-      <span>🏜️</span>
-      <h4>Casa do Lampião</h4>
-    </div>
   </header>
 
-  <nav class="main" id="main-nav">
-    <!-- <button href="../funcionarios/funcionarios.php" class="tab-btn" data-target="funcionarios">Funcionários</button> -->
-     
-    <button class="tab-btn" data-target="pedidos">Pedidos</button>
-    <button class="tab-btn" data-target="admin">Login</button>
-    <button class="tab-btn" data-target="admin">Cadastro</button>
-  </nav>
+</nav>
 
   <div class="container">
     <section class="cards-section">
-      <h2>Nossos Serviços</h2>
+      <h2>Nossas Opções</h2>
       <div class="cards-container">
-        <div class="card" onclick="window.location.href='../cardapio/index.php'">
+        <div class="card" onclick="window.location.href='../cliente/pratos_cli.php'">
           <div class="card-image" style="background-image: url('https://i.pinimg.com/736x/d4/3e/0f/d43e0f98e91801c0c5484e2c9c8c8384.jpg')"></div>
           <div class="card-content">
-            <h3 class="card-title">Cardápio</h3>
+            <h3 class="card-title">Pratos</h3>
             <p class="card-description">Descubra nossos pratos típicos da culinária nordestina, preparados com ingredientes frescos e receitas tradicionais.</p>
-            <a href="../cardapio/index.php" class="card-button">Ver Cardápio</a>
+            <a href="../cliente/pratos_cli.php" class="card-button">Ver Pratos</a>
           </div>
         </div>
 
-        <div class="card" onclick="window.location.href='../bebidas/bebidas.php'">
+        <div class="card" onclick="window.location.href='../cliente/bebidas_cli.php'">
           <div class="card-image" style="background-image: url('https://i.pinimg.com/736x/6b/d1/12/6bd11253521772b62e40c3ef913f7ad7.jpg')"></div>
           <div class="card-content">
             <h3 class="card-title">Bebidas</h3>
             <p class="card-description">Acompanhe sua refeição com nossas bebidas selecionadas, desde sucos naturais até drinks especiais.</p>
-            <a href="../bebidas/bebidas.php" class="card-button">Ver Bebidas</a>
+            <a href="../cliente/bebidas_cli.php" class="card-button">Ver Bebidas</a>
           </div>
         </div>
 

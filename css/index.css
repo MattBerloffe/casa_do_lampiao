@@ -53,63 +53,108 @@ h2 {
     padding: 0 20px;
   }
 
-  /* ===== HEADER ===== */
-  .site-header {
+.site-header {
     background-color: var(--accent);
     color: white;
-    text-align: center;
     padding: 5px 0;
     position: relative;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     width: 100%;
-  }
+}
 
-  .restaurant-title {
+/* Linha do header */
+.header-buttons {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    
+}
+.cadastro-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c96c00;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+.login-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c96c00;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.logout-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c96c00;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+.login-btn:hover {
+  background-color: var(--accent-dark);
+
+}
+
+.cadastro-btn:hover {
+  background-color: var(--accent-dark); 
+  
+}
+
+.logout-btn:hover {
+  background-color: var(--accent-dark); 
+  
+}
+
+
+.cadastro {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.login {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.logout {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.restaurant-title {
+    margin: 0 auto;
+    text-align: center;
     font-size: 2rem;
     font-weight: bold;
+    flex: 1;
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 10px;
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
-  }
+}
 
-  /* ===== MENU HAMBÚRGUER ===== */
-  .menu-toggle {
-    position: absolute;
-    left: 20px;
-    top: 14px;
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
 
-  .menu-toggle span {
-    height: 3px;
-    background: white;
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-
-  .menu-toggle.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-
-  /* ===== NAV ===== */
   nav.main {
     background: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     position: absolute;
-    top: 8%;
+    top: 10%;
     left: 0;
     right: 0;
     text-align: center;
@@ -139,22 +184,22 @@ h2 {
     background: var(--bg);
   }
 
-  /* ===== CARDS ===== */
+
   .cards-section {
-    margin: 100px 0;
-    text-align: center; /* Centraliza o título e os cards */
+    margin: 1% 0;
+    text-align: center; 
   }
 
   .section-title {
     font-size: 1.8rem;
-    color: #fff; /* texto branco */
-    background-color: var(--accent); /* fundo laranja */
+    color: #fff; 
+    background-color: var(--accent); 
     display: inline-block;
     padding: 10px 25px;
-    border: 1px solid #000; /* borda preta fina */
+    border: 1px solid #000; 
     border-radius: 8px;
     text-align: center;
-    margin: 0 auto 25px auto; /* centraliza e dá espaçamento abaixo */
+    margin: 0 auto 25px auto; 
     box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   }
 
@@ -216,7 +261,7 @@ h2 {
     background-color: var(--accent-dark);
   }
 
-  /* ===== FOOTER ===== */
+  
   footer {
     background-color: var(--accent);
     color: white;
@@ -239,3 +284,27 @@ h2 {
       font-size: 1.6rem;
     }
   }
+
+          /* Responsividade */
+          @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            table {
+                font-size: 0.9em;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+            }
+            
+            h2 {
+                font-size: 2em;
+            }
+            
+            td:last-child a {
+                padding: 6px 10px;
+                font-size: 0.9em;
+            }
+        }

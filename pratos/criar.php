@@ -1,8 +1,8 @@
 <?php
 include ("../conexao/conexao.php");
 
-// Busca categorias de bebidas para o select
-$categorias_bebidas = mysqli_query($conn, "SELECT * FROM categorias_bebidas");
+// Busca categorias para preencher o select
+$categorias = mysqli_query($conn, "SELECT * FROM categorias");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_POST['nome'];
@@ -10,27 +10,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $preco = $_POST['preco'];
     $categoria_id = $_POST['categoria_id'];
 
- 
-    $nome_final_imagem = ""; 
+    
+    $nome_final_imagem = ""; // Começa vazio caso não suba imagem
 
     if (isset($_FILES['arquivo']) && $_FILES['arquivo']['error'] == 0) {
         $arquivo = $_FILES['arquivo'];
         $pasta_destino = "../img/"; 
         $nome_arquivo = $arquivo['name'];
 
-        
+        // Tenta mover o arquivo para a pasta
         if (move_uploaded_file($arquivo['tmp_name'], $pasta_destino . $nome_arquivo)) {
             $nome_final_imagem = $nome_arquivo;
         }
     }
 
-    // Insere na tabela BEBIDAS 
-    $sql = "INSERT INTO bebidas (nome, descricao, preco, imagem, categoria_id)
+    // Insere no banco 
+    $sql = "INSERT INTO pratos (nome, descricao, preco, imagem, categoria_id)
             VALUES ('$nome', '$descricao', '$preco', '$nome_final_imagem', '$categoria_id')";
 
     if (mysqli_query($conn, $sql)) {
-        
-        header("Location: bebidas.php"); 
+        header("Location: index.php");
         exit();
     } else {
         echo "<script>alert('Erro ao salvar: " . mysqli_error($conn) . "');</script>";
@@ -44,24 +43,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nova Bebida | Casa do Lampião</title>
-
+    <title>Novo Prato | Casa do Lampião</title>
     <link rel="stylesheet" href="../css/editar.css">
 </head>
 
 <body>
 
 <div class="form-container">
-    <h2>🍹
- Adicionar Nova Bebida</h2>
+    <h2>➕
+ Adicionar Novo Prato</h2>
 
     <form method="POST" enctype="multipart/form-data">
 
-        <label for="nome">Nome da Bebida</label>
-        <input type="text" id="nome" name="nome" placeholder="Ex: Suco de Graviola" required>
+        <label for="nome">Nome do Prato</label>
+        <input type="text" id="nome" name="nome" placeholder="Ex: Baião de Dois" required>
 
         <label for="descricao">Descrição</label>
-        <textarea id="descricao" name="descricao" placeholder="Descreva a bebida (ex: Copo de 500ml, com gelo...)" required></textarea>
+        <textarea id="descricao" name="descricao" placeholder="Descreva os ingredientes e detalhes do prato..." required></textarea>
 
         <div style="display: flex; gap: 15px;">
             <div style="flex: 1;">
@@ -72,26 +70,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="categoria">Categoria</label>
                 <select id="categoria" name="categoria_id" required>
                     <option value="" disabled selected>Selecione...</option>
-                    <?php while ($cb = mysqli_fetch_assoc($categorias_bebidas)) { ?>
-                        <option value="<?= $cb['id'] ?>"><?= $cb['nome'] ?></option>
+                    <?php while ($cat = mysqli_fetch_assoc($categorias)) { ?>
+                        <option value="<?= $cat['id'] ?>"><?= $cat['nome'] ?></option>
                     <?php } ?>
                 </select>
             </div>
         </div>
 
-        <label>Imagem da Bebida</label>
+        <label>Imagem do Prato</label>
         <div class="file-input-wrapper">
             <input type="file" name="arquivo" accept="image/*">
             <small style="color: #888; display: block; margin-top: 5px;">Clique para escolher uma foto (JPG, PNG)</small>
         </div>
 
         <div class="btn-group">
-            <a href="bebidas.php" class="btn-form btn-cancel">
+            <a href="index.php" class="btn-form btn-cancel">
                  Cancelar
             </a>
 
             <button type="submit" class="btn-form btn-save">
-                 Cadastrar Bebida
+                 Cadastrar Prato
             </button>
         </div>
 

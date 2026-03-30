@@ -70,7 +70,7 @@ INSERT INTO pratos (nome, descricao, preco, imagem, categoria_id) VALUES
 ('Bolo de Rolo', 'Camadas finas de massa com goiabada.', 9.00, 'bolo_rolo.jpg', 3),
 ('Pudim de Rapadura', 'Pudim feito com rapadura e leite de coco.', 10.00, 'pudim_rapadura.jpg', 3);
 
--- Tabela categorias_bebidas (nova tabela para categorias de bebidas)
+-- Tabela categorias_bebidas 
 CREATE TABLE categorias_bebidas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(50)
@@ -110,60 +110,18 @@ CREATE TABLE clientes (
     nome VARCHAR(100),
     email VARCHAR(100) UNIQUE,
     telefone VARCHAR(20),
+    cpf VARCHAR(20) UNIQUE,
+    senha VARCHAR(20),
     data_cadastro DATE
 );
 
 
--- Tabela pedidos
-CREATE TABLE pedidos (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id INT,
-    data_pedido DATETIME,
-    status ENUM('Em preparo', 'Pronto', 'Entregue', 'Cancelado') DEFAULT 'Em preparo',
-    total DECIMAL(10,2),
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id)
-);
-
--- Itens do pedido: alimentos
-CREATE TABLE itens_pedido (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id INT,
-    pratos_id INT,
-    quantidade INT,
-    preco_unitario DECIMAL(10,2),
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
-    FOREIGN KEY (pratos_id) REFERENCES pratos(id)
-);
-
--- Itens do pedido: bebidas
-CREATE TABLE itens_bebida (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    pedido_id INT,
-    bebida_id INT,
-    quantidade INT,
-    preco_unitario DECIMAL(10,2),
-    FOREIGN KEY (pedido_id) REFERENCES pedidos(id),
-    FOREIGN KEY (bebida_id) REFERENCES bebidas(id)
-);
-
--- Tabela avaliações
-CREATE TABLE avaliacoes (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    cliente_id INT,
-    pratos_id INT,
-    nota INT CHECK(nota BETWEEN 1 AND 5),
-    comentario TEXT,
-    data_avaliacao DATE,
-    FOREIGN KEY (cliente_id) REFERENCES clientes(id),
-    FOREIGN KEY (pratos_id) REFERENCES pratos(id)
-);
-
--- Tabela usuários admin (para login no painel de administração)
+-- Tabela usuários admin 
 CREATE TABLE usuarios_admin (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100),
     email VARCHAR(100) UNIQUE,
-    senha VARCHAR(255) -- Armazenar o hash da senha
+    senha VARCHAR(255)
 );
 
 INSERT INTO usuarios_admin (nome, email, senha) VALUES

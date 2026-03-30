@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/index.css">
+  <title>Casa do Lampião</title>
+  <style>
+    .logout {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.logout-btn:hover {
+  background-color: var(--accent-dark); 
+  
+}
+.logout-btn{
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #c96c00;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    
+
+    <div class="restaurant-title">
+      <span>🏜️</span>
+      <h4>Casa do Lampião</h4>
+    </div>
+
+    <div class="logout">
+      <a
+       
+        
+       href="../logout.php" class="logout-btn">Logout
+      </a>
+      
+    </div>
+    
+  </header>
+
+
+  <div class="container">
+    <section class="cards-section">
+      <h2>Nossas Opções</h2>
+      <div class="cards-container">
+        <div class="card" onclick="window.location.href='../pratos/index.php'">
+          <div class="card-image" style="background-image: url('https://i.pinimg.com/736x/d4/3e/0f/d43e0f98e91801c0c5484e2c9c8c8384.jpg')"></div>
+          <div class="card-content">
+            <h3 class="card-title">Pratos</h3>
+            <p class="card-description">Descubra nossos pratos típicos da culinária nordestina, preparados com ingredientes frescos e receitas tradicionais.</p>
+            <a href="../pratos/index.php" class="card-button">Ver Pratos</a>
+          </div>
+        </div>
+
+        <div class="card" onclick="window.location.href='../bebidas/bebidas.php'">
+          <div class="card-image" style="background-image: url('https://i.pinimg.com/736x/6b/d1/12/6bd11253521772b62e40c3ef913f7ad7.jpg')"></div>
+          <div class="card-content">
+            <h3 class="card-title">Bebidas</h3>
+            <p class="card-description">Acompanhe sua refeição com nossas bebidas selecionadas, desde sucos naturais até drinks especiais.</p>
+            <a href="../bebidas/bebidas.php" class="card-button">Ver Bebidas</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>Rua do Cangaço, 191 — Recife, PE •
+    Seg a Dom: 11h às 23h
+    (81) 4002-8922 • contato@casadolampiao.com
+    © Casa do Lampião — 2025</p>
+  </footer>
+
+  <script>
+    // Abre/fecha o menu
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('main-nav');
+
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      nav.classList.toggle('show');
+    });
+  </script>
+</body>
+</html>
